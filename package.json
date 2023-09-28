@@ -6,19 +6,31 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write 'src/**/*.+(js|ts|jsx|tsx)'",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "classnames": "^2.3.2",
+    "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "next": "latest"
+    "sass": "^1.68.0"
   },
   "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@next/eslint-plugin-next": "^13.5.3",
     "@types/node": "latest",
+    "@types/react": "latest",
     "@types/react-dom": "latest",
     "eslint": "latest",
-    "eslint-config-next": "latest"
+    "eslint-config-next": "latest",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.3",
+    "prettier": "^3.0.3",
+    "typescript": "latest"
   }
 }
