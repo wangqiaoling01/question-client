@@ -4,7 +4,7 @@ import Head from 'next/head'
 import React, { FC } from 'react'
 import styles from '@/styles/Question.module.scss'
 interface QuestionProps {
-    [key: string]: any
+    id: string
 }
 
 /**
