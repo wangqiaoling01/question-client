@@ -1,3 +1,4 @@
+import { postAnswer } from '@/services/answer'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const genAnswerInfo = (reqBody: any) => {
@@ -15,14 +16,19 @@ const genAnswerInfo = (reqBody: any) => {
     }
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'POST') {
         res.status(200).json({ errno: -1, msg: 'Method Error' })
     }
     const answerInfo = genAnswerInfo(req.body)
     try {
         // 提交数据到服务端
-        res.redirect('/success')
+        const answerRes = await postAnswer(answerInfo)
+        if (answerRes.errno === 0) {
+            res.redirect('/success')
+        } else {
+            res.redirect('/fail')
+        }
     } catch (error) {
         res.redirect('/fail')
     }
