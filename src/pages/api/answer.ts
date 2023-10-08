@@ -30,6 +30,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             res.redirect('/fail')
         }
     } catch (error) {
+        console.log(error);
+        
         res.redirect('/fail')
     }
 }

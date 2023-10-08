@@ -1,5 +1,6 @@
 import { post } from "./ajax";
 
 export async function postAnswer(answerInfo: any) {
-    post('', postAnswer)
+    const data = await post('/api/answer', postAnswer)
+    return data
 }
