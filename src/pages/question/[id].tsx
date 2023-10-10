@@ -1,10 +1,8 @@
-import QuestionInput from '@/components/QuestionComponents/QuestionInput'
-import QuestionRadio from '@/components/QuestionComponents/QuestionRadio'
-import Head from 'next/head'
 import React, { FC } from 'react'
 import styles from '@/styles/Question.module.scss'
 import PageWrapper from '@/components/pageWrapper'
 import { getQuestionById } from '@/services/question'
+import { getComponent } from '@/components/QuestionComponents'
 interface QuestionProps {
     errno: number
     msg?: string
@@ -35,7 +33,7 @@ const Question: FC<QuestionProps> = (props: QuestionProps) => {
         return <PageWrapper title='错误'><h1>错误</h1><p>{msg}</p></PageWrapper>
     }
 
-    const {id, title = '', isPublished, isDeleted, desc} = data || {}
+    const {id, title = '', isPublished, isDeleted, desc, componentList} = data || {}
 
     if (isDeleted) {
         return <PageWrapper title={title} description={desc}>
@@ -51,27 +49,25 @@ const Question: FC<QuestionProps> = (props: QuestionProps) => {
         </PageWrapper>
     }
 
+    // 遍历组件
+    const ComponentListElem = (
+        <>
+            {componentList?.map(comp => {
+                const Component = getComponent(comp)
+                return (
+                    <div className={styles.componentWrapper} key={comp.fe_id}>
+                        {Component}
+                    </div>
+                )
+            })}
+        </>
+    )
+
     return (
         <PageWrapper title={title}>
             <form action={'/api/answer'} method="post">
                 <input type="hidden" value={id} name="questionId" />
-                <div className={styles.componentWrapper}>
-                    <QuestionInput fe_id="c1" props={{ title: '标题', placeholder: 'ww' }} />
-                </div>
-                <div className={styles.componentWrapper}>
-                    <QuestionRadio
-                        fe_id="c2"
-                        props={{
-                            title: '标题',
-                            value: 'ww',
-                            isVertical: false,
-                            options: [
-                                { value: 'ww', text: 'ww' },
-                                { value: 'ww2', text: 'ww2' },
-                            ],
-                        }}
-                    />
-                </div>
+                {ComponentListElem}
                 <div className={styles.inputBtnContainer}>
                     <button type="submit">提交</button>
                 </div>
