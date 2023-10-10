@@ -21,6 +21,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(200).json({ errno: -1, msg: 'Method Error' })
     }
     const answerInfo = genAnswerInfo(req.body)
+    console.log(answerInfo);
+    
     try {
         // 提交数据到服务端
         const answerRes = await postAnswer(answerInfo)

@@ -21,6 +21,7 @@ const QuestionCheckbox: FC<QuestionCheckboxProps> = ({fe_id, props}: QuestionChe
 
     // 初始化
     useEffect(() => {
+        setSelectedValues(() => [])
         list.forEach(item => {
             const {value, checked} = item
             if (checked) {
