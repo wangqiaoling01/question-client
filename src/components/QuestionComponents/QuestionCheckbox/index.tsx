@@ -15,15 +15,15 @@ interface QuestionCheckboxProps {
     }
 }
 
-const QuestionCheckbox: FC<QuestionCheckboxProps> = ({fe_id, props}: QuestionCheckboxProps) => {
-    const {title, list = [], isVertical} = props
+const QuestionCheckbox: FC<QuestionCheckboxProps> = ({ fe_id, props }: QuestionCheckboxProps) => {
+    const { title, list = [], isVertical } = props
     const [selectedValues, setSelectedValues] = useState<string[]>([])
 
     // 初始化
     useEffect(() => {
         setSelectedValues(() => [])
         list.forEach(item => {
-            const {value, checked} = item
+            const { value, checked } = item
             if (checked) {
                 setSelectedValues(selectedValues => selectedValues.concat(value))
             }
@@ -43,18 +43,21 @@ const QuestionCheckbox: FC<QuestionCheckboxProps> = ({fe_id, props}: QuestionChe
         <>
             <p>{title}</p>
             {/* 使用隐藏域 提交表单 */}
-            <input type='hidden' name={fe_id} value={selectedValues.toString()} />
+            <input type="hidden" name={fe_id} value={selectedValues.toString()} />
             <ul className={styles.list}>
                 {list.map(item => {
-                    const {value, text, checked} = item
+                    const { value, text, checked } = item
                     return (
-                        <li key={value} className={classNames({
-                            [styles.verticalItem]: isVertical,
-                            [styles.horizontalItem]: !isVertical
-                        })}>
-                            <label htmlFor=''>
+                        <li
+                            key={value}
+                            className={classNames({
+                                [styles.verticalItem]: isVertical,
+                                [styles.horizontalItem]: !isVertical,
+                            })}
+                        >
+                            <label htmlFor="">
                                 <input
-                                    type='checkbox'
+                                    type="checkbox"
                                     checked={selectedValues.includes(value)}
                                     onChange={() => onChange(value)}
                                 />

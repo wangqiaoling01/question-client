@@ -4,16 +4,15 @@ import styles from '@/styles/common.module.scss'
 import Script from 'next/script'
 
 interface PageWrapperProps {
-  title: string
-  description?: string
-  css?: string
-  js?: string
-  children: JSX.Element | JSX.Element[]
+    title: string
+    description?: string
+    css?: string
+    js?: string
+    children: JSX.Element | JSX.Element[]
 }
 
 const PageWrapper: FC<PageWrapperProps> = (props: PageWrapperProps) => {
-
-    const {title, description = '', children, css = '', js = ''} = props;
+    const { title, description = '', children, css = '', js = '' } = props
 
     return (
         <>
@@ -24,10 +23,8 @@ const PageWrapper: FC<PageWrapperProps> = (props: PageWrapperProps) => {
                 <link rel="icon" href="/favicon.ico" />
                 <style>{css}</style>
             </Head>
-            <main className={styles.container}>
-                {children}
-            </main>
-            <Script id='page-js'>{js}</Script>
+            <main className={styles.container}>{children}</main>
+            <Script id="page-js">{js}</Script>
         </>
     )
 }

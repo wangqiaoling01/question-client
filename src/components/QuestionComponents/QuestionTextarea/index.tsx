@@ -2,14 +2,14 @@ import React, { FC } from 'react'
 import styles from './index.module.scss'
 
 interface QuestionTextareaProps {
-    fe_id: string,
+    fe_id: string
     props: {
         title: string
         placeholder?: string
     }
 }
 
-const QuestionTextarea: FC<QuestionTextareaProps> = ({fe_id, props}: QuestionTextareaProps) => {
+const QuestionTextarea: FC<QuestionTextareaProps> = ({ fe_id, props }: QuestionTextareaProps) => {
     const { title, placeholder = '' } = props
     return (
         <>

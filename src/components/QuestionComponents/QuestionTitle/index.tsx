@@ -7,7 +7,7 @@ interface QuestionTitleProps {
 }
 
 const QuestionTitle: FC<QuestionTitleProps> = (props: QuestionTitleProps) => {
-    const {text, level, isCenter} = props;
+    const { text, level, isCenter } = props
     const style: CSSProperties = {}
     if (isCenter) {
         style.textAlign = 'center'

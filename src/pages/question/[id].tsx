@@ -23,30 +23,35 @@ interface QuestionProps {
  * http://localhost:3000/question/222
  */
 const Question: FC<QuestionProps> = (props: QuestionProps) => {
-    const {
-        errno,
-        data,
-        msg = ''
-    } = props
+    const { errno, data, msg = '' } = props
 
     if (errno !== 0) {
-        return <PageWrapper title='错误'><h1>错误</h1><p>{msg}</p></PageWrapper>
+        return (
+            <PageWrapper title="错误">
+                <h1>错误</h1>
+                <p>{msg}</p>
+            </PageWrapper>
+        )
     }
 
-    const {id, title = '', isPublished, isDeleted, desc, componentList} = data || {}
+    const { id, title = '', isPublished, isDeleted, desc, componentList } = data || {}
 
     if (isDeleted) {
-        return <PageWrapper title={title} description={desc}>
-            <h1>错误</h1>
-            <p>该问卷已被删除</p>
-        </PageWrapper>
+        return (
+            <PageWrapper title={title} description={desc}>
+                <h1>错误</h1>
+                <p>该问卷已被删除</p>
+            </PageWrapper>
+        )
     }
 
     if (!isPublished) {
-        return <PageWrapper title={title} description={desc}>
-            <h1>错误</h1>
-            <p>该问卷尚未发布</p>
-        </PageWrapper>
+        return (
+            <PageWrapper title={title} description={desc}>
+                <h1>错误</h1>
+                <p>该问卷尚未发布</p>
+            </PageWrapper>
+        )
     }
 
     // 遍历组件
@@ -81,7 +86,7 @@ export async function getServerSideProps(content: any) {
     // 根据 id await 获取问卷数据
     const data = await getQuestionById(id)
     return {
-        props: data
+        props: data,
     }
 }
 
